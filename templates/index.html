@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Mi Aplicación Flask</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #e0f7fa; /* Color de fondo suave */
+            flex-direction: column;
+            color: #00796b; /* Color de texto amigable */
+        }
+        h1 {
+            font-size: 2.5em;
+            animation: fadeIn 3s ease-in-out infinite alternate;
+            color: #004d40; /* Color de texto para la animación */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            margin: 5px;
+            background-color: #00796b; /* Color de fondo del botón */
+            color: #ffffff; /* Color del texto del botón */
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #004d40; /* Color de fondo del botón al pasar el ratón */
+        }
+        .info {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .info .highlight {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            font-size: 1.2em;
+            color: #004d40;
+        }
+    </style>
+</head>
+<body>
+    <h1>¡Hola, Mundo!</h1>
+    <div class="buttons">
+        <button onclick="incrementCounter()">Incrementar</button>
+        <button onclick="decrementCounter()">Decrementar</button>
+    </div>
+    <div class="info">
+        <p>Count: <span id="counter">0</span></p>
+        <p class="highlight">Datos: Rigoberto Díaz Hernández</p>
+        <p>Matrícula: 20211036</p>
+        <p>9° A</p>
+    </div>
+    <script>
+        let counter = 0;
+        function incrementCounter() {
+            counter++;
+            document.getElementById('counter').textContent = counter;
+        }
+        function decrementCounter() {
+            if (counter > 0) {
+                counter--;
+                document.getElementById('counter').textContent = counter;
+            }
+        }
+    </script>
+</body>
+</html>
