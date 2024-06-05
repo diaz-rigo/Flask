@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>Mi Aplicación Flask</title>
+    
+    <link rel="icon" type="image/png" href="/flask.png" sizes="16x16">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap">
     <style>
         body {
@@ -12,7 +14,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #e0f7fa; /* Color de fondo suave */
+            background-color: #e0f7fa;
             flex-direction: column;
             color: #00796b; /* Color de texto amigable */
         }
@@ -52,19 +54,75 @@
             font-size: 1.2em;
             color: #004d40;
         }
+        .calculator {
+            margin-top: 20px;
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            width: 100%;
+        }
+        .calculator h2 {
+            margin-bottom: 20px;
+            color: #004d40;
+        }
+        .calculator input, .calculator select {
+            padding: 10px;
+            margin: 5px;
+            font-size: 1em;
+            width: calc(100% - 22px);
+            box-sizing: border-box;
+            border: 1px solid #00796b;
+            border-radius: 5px;
+        }
+        .calculator button {
+            width: 100%;
+            background-color: #00796b;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .calculator button:hover {
+            background-color: #004d40;
+        }
+        .calculator p {
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: #00796b;
+        }
     </style>
 </head>
 <body>
-    <h1>¡Hola, Mundo!</h1>
+    <h1> Rigoberto Díaz Hernández</h1>
     <div class="buttons">
         <button onclick="incrementCounter()">Incrementar</button>
         <button onclick="decrementCounter()">Decrementar</button>
     </div>
     <div class="info">
         <p>Count: <span id="counter">0</span></p>
-        <p class="highlight">Datos: Rigoberto Díaz Hernández</p>
-        <p>Matrícula: 20211036</p>
-        <p>9° A</p>
+        <p class="highlight">Matrícula: 20211036</p>
+        <p class="highlight">9° A</p>
+    </div>
+    <div class="calculator">
+        <h2>Calculadora</h2>
+        <form onsubmit="calculate(event)">
+            <input type="number" id="num1" placeholder="Número 1" required>
+            <input type="number" id="num2" placeholder="Número 2" required>
+            <select id="operation" required>
+                <option value="add">Sumar</option>
+                <option value="subtract">Restar</option>
+                <option value="multiply">Multiplicar</option>
+                <option value="divide">Dividir</option>
+            </select>
+            <button type="submit">Calcular</button>
+        </form>
+        <p id="calcResult"></p>
     </div>
     <script>
         let counter = 0;
@@ -77,6 +135,27 @@
                 counter--;
                 document.getElementById('counter').textContent = counter;
             }
+        }
+        function calculate(event) {
+            event.preventDefault();
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const operation = document.getElementById('operation').value;
+            let result;
+            if (operation === 'add') {
+                result = num1 + num2;
+            } else if (operation === 'subtract') {
+                result = num1 - num2;
+            } else if (operation === 'multiply') {
+                result = num1 * num2;
+            } else if (operation === 'divide') {
+                if (num2 !== 0) {
+                    result = num1 / num2;
+                } else {
+                    result = 'Error: División por cero';
+                }
+            }
+            document.getElementById('calcResult').textContent = `Resultado: ${result}`;
         }
     </script>
 </body>
